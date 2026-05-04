@@ -4,7 +4,6 @@ from langgraph.graph import StateGraph, START, END
 from langchain_openai import ChatOpenAI
 from pypdf import PdfReader
 from docx import Document
-import os
 
 # -------------------- CONFIG --------------------
 st.set_page_config(page_title="AI Resume Analyzer", layout="wide", page_icon="🤖")
@@ -19,7 +18,8 @@ class State(TypedDict):
 # -------------------- LLM --------------------
 llm = ChatOpenAI(
     model="gpt-4o-mini",
-    temperature=0
+    temperature=0,
+    api_key=st.secrets["OPENAI_API_KEY"]   # ✅ FIXED
 )
 
 # -------------------- NODES --------------------
